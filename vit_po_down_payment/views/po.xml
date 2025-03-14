@@ -1,0 +1,54 @@
+<odoo>
+    <data>
+        <record id="purchase_order_form" model="ir.ui.view">
+            <field name="name">purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <!-- Mendefinisikan aksi yang akan dijalankan saat tombol diklik -->
+                <!-- Bagian name, memiliki atribut name khusus untuk membuka suatu action yaitu action Wizard -->
+                <!-- Bagian string, adalah Label yang akan muncul pada tombol -->
+                <!-- Bagian action, adalah Tindakannya (Action) -->
+                <!-- Bagian group, yaitu lokasi / letak tombolnya muncul -->
+                <!-- Bagian attrs, Menentukan pada State dan Kondisi apa tombol ini akan muncul -->
+                <button name="button_draft" position="after">
+                    <button
+                        name="%(action_view_account_voucher_wizard)d"
+                        string="Pay purchase advanced"
+                        type="action"
+                        groups="purchase.group_purchase_manager"
+                        attrs="{'invisible': ['|',('state', 'in', ['done', 'cancel']),('amount_residual', '=', 0)]}"
+                    />
+                </button>
+                <!-- Menambahkan tab Payment advances -->
+                <notebook position="inside">
+                    <!-- Menampilkan daftar Down Payment -->
+                    <page string="Payment advances" name="purchase.group_purchase_invoice">
+                        <!-- Bagian Context, yaitu untuk menentukan nama view & tree yang akan digunakan jika baris payment yang terlihat itu di klik -->
+                        <field
+                            name="account_payment_ids"
+                            nolabel="1"
+                            colspan="4"
+                            context="{'form_view_ref': 'account.view_account_payment_form','tree_view_ref': 'account.view_account_payment_tree'}"
+                        />
+                    </page>
+                </notebook>
+
+                <!-- Agar field amount residual muncul tepat dibagian form Purchase Order -->
+                <field name="tax_totals" position="after">
+                    <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                        <label for="amount_residual"/>
+                    </div>
+
+                    <field
+                        name="amount_residual"
+                        nolabel="1"
+                        class="oe_subtotal_footer_separator"
+                        widget="monetary"
+                        options="{'currency_field': 'currency_id'}"
+                    />
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -18,4 +18,4 @@ VIT PO Down Payment is an Odoo module that enhances the Purchase Order functiona
 ## Installation
 1. Clone this repository into your Odoo `addons` directory:
    ```bash
-   git clone https://github.com/SyahrilDarmawan/vit_po_down_payment.git
+   git clone https://github.com/SyahrilDarmawan/down-payment.git

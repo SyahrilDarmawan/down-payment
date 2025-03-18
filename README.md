@@ -1,4 +1,4 @@
-# VIT PO Down Payment
+# Purchase Order Down Payment
 
 ## Overview
 VIT PO Down Payment is an Odoo module that enhances the Purchase Order functionality by adding support for down payments. This module allows users to manage advance payments before invoicing, track payment statuses (Not Paid, Paid, Partially Paid), and automatically calculate the remaining amount due.
